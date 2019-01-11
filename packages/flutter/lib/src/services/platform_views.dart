@@ -532,6 +532,19 @@ class AndroidViewController {
     });
   }
 
+  /// Sets the cursor icon on supported platforms.
+  Future<void> setPointerIcon(int pointer) async {
+    final Map<String, dynamic> args = <String, dynamic> {
+      'id': id,
+      'pointerIcon': pointer,
+    };
+
+    await SystemChannels.platform_views.invokeMethod(
+      'setPointerIcon',
+      args,
+    );
+  }
+
   static int _getAndroidDirection(TextDirection direction) {
     assert(direction != null);
     switch (direction) {
